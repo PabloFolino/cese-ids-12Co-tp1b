@@ -2,13 +2,20 @@ SRC_DIR = ./src
 INC_DIR = ./inc
 OBJ_DIR = ./build/obj
 BIN_DIR = ./build
+DOC_DIR = ./build/doc
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJ_FILES = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC_FILES))
+DOXY_FILE = $(wildcard $(Doxyfile))
+
+doc: $(DOC_DIR)
+	@doxygen $(DOXY_FILE)
 
 all: build_folders $(OBJ_FILES)
 	@echo Building aplication
 	@gcc $(OBJ_FILES) -o $(BIN_DIR)/app.out
+	@doxygen $(DOXY_FILE)
+	
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo Compiling source file $(notdir $(basename $<))
@@ -29,3 +36,7 @@ $(BIN_DIR): $(OUT_DIR)
 $(OBJ_DIR): $(OUT_DIR)
 	@echo Creating output objects folder
 	@mkdir $(OBJ_DIR)
+	
+$(DOC_DIR): $(OUT_DIR)
+	@echo Creating output document folder
+	@mkdir $(DOC_DIR)

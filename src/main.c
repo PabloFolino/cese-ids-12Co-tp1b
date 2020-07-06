@@ -34,6 +34,13 @@
 
 /*=====[Implementations of private functions]================================*/
 
+/**
+ * @brief Programa princial
+ * 
+ * @param  argc     Cantidad de de datos de entrada 
+ * @param  argv     Puntero de la entrada de datos
+ * @return          Retorna cero 
+ */
 int main(int argc, char *argv[]) {
     char cadena[2048];
 
